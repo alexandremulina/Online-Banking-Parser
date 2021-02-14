@@ -21,7 +21,7 @@ def home():
                     except IndexError:
                         api = 'Null'
                     bank_dict[f"api-{api_family_type}"] = api
-                    banks.append(bank_dict)
+                banks.append(bank_dict)
     r = requests.get("https://api.itau/open-banking/channels/v1/branches") #loop  through ApiEndpoint
     r2 = requests.get("https://api.bradesco.com/bradesco/open-banking/channels/v1/branche")
     codes = [r.status_code, r2.status_code]
