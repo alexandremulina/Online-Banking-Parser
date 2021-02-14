@@ -10,7 +10,6 @@ def home():
         bank_dict = dict()
         bank_dict["name"] = bank['LegalEntityName']
         bank_dict["status"] = bank['Status']
-        print(bank['LegalEntityName'])
         auth_servers = bank['AuthorisationServers']
         for server in auth_servers:
             api_resources = server['ApiResources']
@@ -21,8 +20,6 @@ def home():
                         api = api_resource['ApiDiscoveryEndpoints'][0]['ApiEndpoint']
                     except IndexError:
                         api = 'Null'
-                    print(api_family_type)
-                    print(api)
                     bank_dict[f"api-{api_family_type}"] = api
                     banks.append(bank_dict)
     r = requests.get("https://api.itau/open-banking/channels/v1/branches") #loop  through ApiEndpoint
