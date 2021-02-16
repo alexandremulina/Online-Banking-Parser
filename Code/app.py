@@ -27,14 +27,13 @@ def home():
         # print(banks[index]['status'])
         try:
             url = banks[index]['api-discovery']
-            url2 = banks[index]['api-discovery']
             try:
-                # print('status code :', requests.get(url))
+                print('status code :', requests.get(url))
             except requests.exceptions.ConnectionError:
-                # print("Connection Refused")
+                print("Connection Refused")
         except KeyError:
             url = 'Vazio'
-        # print(url)
+        print(url)
     codes = [r.status_code, r2.status_code]
     results = []
     for code in codes:

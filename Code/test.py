@@ -30,7 +30,7 @@ for bank in response_json:
                 try:
                     api = api_resource['ApiDiscoveryEndpoints'][0]['ApiEndpoint']
                 except IndexError:
-                    api = 'Null'
+                    api = 'http://Null'
                 # print(api_family_type)
                 # print(api)
                 bank_dict[f"api-{api_family_type}"] = api
@@ -45,31 +45,50 @@ for index in range(len(banks)):
     print(banks[index]['status'])
     try:
         url = banks[index]['api-discovery']
-        url1 = banks[index]['api-products-services']
-        # url2 = banks[index]['api-admin']
-        # url3 = banks[index]['api-channels']
-        # url4 = banks[index]['api-other']
-        try:
-            print('status code :',requests.get(url))
-            print('status code :', requests.get(url1))
-            # print('status code :', requests.get(url2))
-            # print('status code :', requests.get(url3))
-            # print('status code :', requests.get(url4))
-
-        except (requests.exceptions.ConnectionError , requests.exceptions.MissingSchema):
-            print("Connection Refused")
     except KeyError:
-        url = 'Vazio'
-        url1 = 'Vazio'
-        # url2 = 'Vazio'
-        # url3 = 'Vazio'
-        # url4 = 'Vazio'
+        url = 'http://Vazio'
+    try:
+        url1 = banks[index]['api-discovery']
+    except KeyError:
+        url1 = 'http://Vazio'
+    try:
+        url2 = banks[index]['api-discovery']
+    except KeyError:
+        url2 = 'http://Vazio'
+    try:
+        url3 = banks[index]['api-discovery']
+    except KeyError:
+        url3 = 'http://Vazio'
+    try:
+        url4 = banks[index]['api-discovery']
+    except KeyError:
+        url4 = 'http://Vazio'
+    try:
+        print('status code :',requests.get(url))
+    except (requests.exceptions.ConnectionError):
+        print("Connection Refused")
+    try:
+        print('status code :', requests.get(url1))
+    except (requests.exceptions.ConnectionError,requests.exceptions.MissingSchema):
+        print("Connection Refused")
+    try:
+        print('status code :', requests.get(url2))
+    except (requests.exceptions.ConnectionError,requests.exceptions.MissingSchema):
+        print("Connection Refused")
+    try:
+        print('status code :', requests.get(url3),requests.exceptions.MissingSchema)
+    except (requests.exceptions.ConnectionError,requests.exceptions.MissingSchema):
+        print("Connection Refused")
+    try:
+        print('status code :', requests.get(url4),requests.exceptions.MissingSchema)
+    except (requests.exceptions.ConnectionError):
+        print("Connection Refused")
 
     print(url)
     print(url1)
-    # print(url2)
-    # print(url3)
-    # print(url4)
+    print(url2)
+    print(url3)
+    print(url4)
 
 
 
