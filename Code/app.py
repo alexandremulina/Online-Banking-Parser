@@ -22,8 +22,18 @@ def home():
                         api = 'Null'
                     bank_dict[f"api-{api_family_type}"] = api
                 banks.append(bank_dict)
-    r = requests.get("https://api.itau/open-banking/channels/v1/branches") #loop  through ApiEndpoint
-    r2 = requests.get("https://api.bradesco.com/bradesco/open-banking/channels/v1/branche")
+    for index in range(len(banks)):
+        for value in banks[index].values():
+            # print(value)
+            try:
+                url = banks[index]['api-discovery']
+                try:
+                    print(requests.get(url))
+                except requests.exceptions.ConnectionError:
+                    print("Connectio Refused")
+            except KeyError:
+                url = 'Vazio'
+            print(url)
     codes = [r.status_code, r2.status_code]
     results = []
     for code in codes:
