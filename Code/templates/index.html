@@ -1,13 +1,19 @@
-<doctype html>
-  <html>
-    <head>
-      <title>Home Page</title>
-    </head>
-    <body>
-      <h1>Canais de atendimento eletrônico</h1>
-      {% for result in content %}
-      <p>STATUS : {{result}}</p>
-      {% endfor %}
-    </body>
-  </html></doctype
->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=1980, initial-scale=1.0" />
+    <title>Status API Open Banking Brasil</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+  </head>
+  <body>
+    {% for bank in banks:%}
+    <li>{{bank.name}}</li>
+    <li></li>
+    {%endfor%}
+  </body>
+</html>
