@@ -69,18 +69,18 @@ for index in range(len(banks)):
         print("Connection Refused")
     try:
         print('status code :', requests.get(url1))
-    except (requests.exceptions.ConnectionError,requests.exceptions.MissingSchema):
+    except (requests.exceptions.ConnectionError):
         print("Connection Refused")
     try:
         print('status code :', requests.get(url2))
-    except (requests.exceptions.ConnectionError,requests.exceptions.MissingSchema):
+    except (requests.exceptions.ConnectionError):
         print("Connection Refused")
     try:
-        print('status code :', requests.get(url3),requests.exceptions.MissingSchema)
-    except (requests.exceptions.ConnectionError,requests.exceptions.MissingSchema):
+        print('status code :', requests.get(url3))
+    except (requests.exceptions.ConnectionError):
         print("Connection Refused")
     try:
-        print('status code :', requests.get(url4),requests.exceptions.MissingSchema)
+        print('status code :', requests.get(url4))
     except (requests.exceptions.ConnectionError):
         print("Connection Refused")
 
