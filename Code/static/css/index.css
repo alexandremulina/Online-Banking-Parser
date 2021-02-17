@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap");
+
+/* Global Elements */
+html,
+body {
+  background-color: #f9fafb;
+  font-family: "Roboto", sans-serif;
+  color: #4e4e4e;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+p {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: #26547c;
+}
+
+/* Global Styles */
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.active {
+  color: #26547c !important;
+}
+
+.fa-chevron-right,
+.fa-chevron-down {
+  margin: 0 0 0 1rem;
+  color: rgb(148, 148, 148);
+  line-height: 2.5rem;
+  font-size: 1.3rem;
+}
+
+/* Page Specific */
+
+.bank-card {
+  padding: 2rem;
+  margin: 2rem 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.bank-card-active {
+  background-color: rgba(239, 246, 255, 0.7);
+}
+
+.bank-info {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.bank-name {
+  flex-grow: 1;
+  font-size: 1.3rem;
+  line-height: 2.5rem;
+  max-width: 75%;
+}
+
+.bank-status {
+  min-width: 20%;
+  font-size: 1.3rem;
+}
+
+[data-bank-status="active"] {
+  color: #34d399;
+}
+
+.api-resources {
+  line-height: 1.6rem;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 2rem;
+}
+
+.author-info p {
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+.author-info i {
+  line-height: 1.2rem;
+  font-size: 2.5rem;
+}
+
+.search-form-control {
+  position: relative;
+}
+
+.search-form-control .btn {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 8px;
+}
+
+.search-form-control .form-control {
+  height: 3.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e7e7e7;
+}
+
+.search-form-control .form-control:focus {
+  border: 1px solid #26547c;
+  outline: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-flat {
+  background-color: #26547c;
+  color: white;
+}
+
+.btn-flat:hover {
+  background-color: #4697dd;
+  color: white;
+}
