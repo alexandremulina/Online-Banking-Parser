@@ -15,6 +15,7 @@ def parse_directory_response(response_json):
         bank_dict = dict()
         bank_dict["name"] = bank['LegalEntityName']
         bank_dict["status"] = bank['Status']
+        bank_dict["api_resources"] = []
         auth_servers = bank['AuthorisationServers']
         for server in auth_servers:
             api_resources = server['ApiResources']
@@ -25,6 +26,7 @@ def parse_directory_response(response_json):
                         api = api_resource['ApiDiscoveryEndpoints'][0]['ApiEndpoint']
                     except IndexError:
                         api = 'Null'
-                    bank_dict[f"api-{api_family_type}"] = api
+                    api_dict = {f"api-{api_family_type}": api}
+                    bank_dict["api_resources"].append(api_dict)
                 banks.append(bank_dict)
     return banks
