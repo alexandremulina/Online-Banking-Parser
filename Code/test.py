@@ -4,6 +4,12 @@ import json
 import urllib.request
 from urllib.request import urlopen
 
+def concat_url (api_name,url):
+    open_bank_br ={'products-services':'/personal-accounts' , 'discovery':'/status', 'admin':'/metrics','channels':'/branches','other':'' }
+    for key,value in open_bank_br.items():
+        if key == api_name:
+            return url + value
+
 def directory_api_call(base_url):
     r = requests.get(base_url)
     response_json = r.json()
@@ -26,7 +32,10 @@ def parse_directory_response(response_json):
                         api = api_resource['ApiDiscoveryEndpoints'][0]['ApiEndpoint']
                     except IndexError:
                         api = 'Null'
-                    api_dict = {f"api-{api_family_type}": api}
+                    endpoint = concat_url(api_family_type, api)
+                    api_dict = {f"api-{api_family_type}": endpoint}
                     bank_dict["api_resources"].append(api_dict)
                 banks.append(bank_dict)
     return banks
+
+

@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 @app.route("/")
 
+
+
 def home():
     url = 'https://data.directory.openbankingbrasil.org.br/participants'
     response_json = test.directory_api_call(url)
