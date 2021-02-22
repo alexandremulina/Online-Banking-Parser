@@ -15,7 +15,15 @@ def directory_api_call(base_url):
     response_json = r.json()
     return response_json
 
+def bank_endpoint_call(endpoint):
+    try:
+        r = requests.get(endpoint)
+        return r.status_code
+    except:
+        return 404
+
 def parse_directory_response(response_json):
+    # TODO REFACTOR
     banks = []
     for bank in response_json:
         bank_dict = dict()
@@ -31,9 +39,13 @@ def parse_directory_response(response_json):
                     try:
                         api = api_resource['ApiDiscoveryEndpoints'][0]['ApiEndpoint']
                     except IndexError:
-                        api = 'Null'
-                    endpoint = concat_url(api_family_type, api)
-                    api_dict = {f"api-{api_family_type}": endpoint}
+                        api = None
+                    if api:
+                        endpoint = concat_url(api_family_type, api)
+                        endpoint_status = bank_endpoint_call(endpoint)
+                        api_dict = {f"api-{api_family_type}": {'url': endpoint, 'status': endpoint_status}}
+                    else:
+                        api_dict = {f"api-{api_family_type}": {'url': 'none', 'status': 'none'}}
                     bank_dict["api_resources"].append(api_dict)
                 banks.append(bank_dict)
     return banks

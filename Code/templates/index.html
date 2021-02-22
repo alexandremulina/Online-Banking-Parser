@@ -46,10 +46,14 @@
             <i class="fas fa-chevron-right"></i>
           </div>
           <ul class="api-resources truncate d-none">
-            {% for api_resources in bank["api_resources"]: %} {% for api_resource
-            in api_resources.values() %}
-            <li>{{api_resource}}</li>
-            {% endfor %} {% endfor %}
+            {% for api_resource in bank["api_resources"]: %}
+              {% for api_family, uri in api_resource.items(): %}
+                <li>{{api_family}}</li>
+                <div class="flex">
+                  <li><strong>URL</strong>: {{uri.url}}</li>
+                  <li class="api-status"><strong>Status</strong>: <span class="response-code">{{uri.status}}</span></li>
+                </div>
+            {% endfor %}{% endfor %}
           </ul>
         </ul>
       </div>
