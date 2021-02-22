@@ -14,6 +14,7 @@ def home():
     response_json = test.directory_api_call(url)
     banks = test.parse_directory_response(response_json)
     today = datetime.date.today()
+    print(banks)
     return render_template("index.html", content = banks, date_time = today)
 
 
