@@ -11,11 +11,11 @@ app = Flask(__name__)
 
 def home():
     url = 'https://data.directory.openbankingbrasil.org.br/participants'
-    # if db data > 2 hours | db is empty:
-    # make API calls
-    # save on db
-    # else:
-    # fetch from db (get)
+    # TODO if db data > 2 hours | db is empty:
+    # TODO make API calls
+    # TODO save on db
+    # TODO else:
+    # TODO fetch from db (get)
     response_json = test.directory_api_call(url)
     banks = test.parse_directory_response(response_json)
     today = datetime.date.today()

@@ -23,6 +23,7 @@ def bank_endpoint_call(endpoint):
         return 404
 
 def parse_directory_response(response_json):
+    # TODO REFACTOR
     banks = []
     for bank in response_json:
         bank_dict = dict()
