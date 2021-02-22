@@ -47,9 +47,12 @@
           </div>
           <ul class="api-resources truncate d-none">
             {% for api_resource in bank["api_resources"]: %}
-              {% for key, value in api_resource.items(): %}
-                <li>{{key}}</li>
-                <li>{{value}}</li>
+              {% for api_family, uri in api_resource.items(): %}
+                <li>{{api_family}}</li>
+                <div class="flex">
+                  <li><strong>URL</strong>: {{uri.url}}</li>
+                  <li class="api-status"><strong>Status</strong>: <span class="response-code">{{uri.status}}</span></li>
+                </div>
             {% endfor %}{% endfor %}
           </ul>
         </ul>
