@@ -45,5 +45,4 @@ def insert_list():
                         api_dict = {f"api-{api_family_type}": {'url': 'none', 'status': 'none'}}
                     bank_dict["api_resources"].append(api_dict)
                 collection.insert_one({"name":bank['LegalEntityName'],"status":bank['Status'],"api_resources":bank_dict["api_resources"]})
-
     return print("DB Atualizado")
