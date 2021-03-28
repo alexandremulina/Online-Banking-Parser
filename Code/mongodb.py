@@ -25,7 +25,6 @@ def insert_list():
     url = 'https://data.directory.openbankingbrasil.org.br/participants'
     response_json = test.directory_api_call(url)
     erase_db()
-    banks = []
     for bank in response_json:
         bank_dict = dict()
         bank_dict["api_resources"] = []
@@ -46,6 +45,5 @@ def insert_list():
                         api_dict = {f"api-{api_family_type}": {'url': 'none', 'status': 'none'}}
                     bank_dict["api_resources"].append(api_dict)
                 collection.insert_one({"name":bank['LegalEntityName'],"status":bank['Status'],"api_resources":bank_dict["api_resources"]})
-                banks.append(bank_dict)
 
     return print("DB Atualizado")

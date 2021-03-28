@@ -5,25 +5,32 @@ import mongodb
 import time
 from flask_apscheduler import APScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
-app = Flask(__name__)
+from flask_caching import Cache
 
-
+#caching
+config = {
+    "DEBUG":True,
+    "CACHE_TYPE":"simple",
+    "CACHE_DEFAULT_TIMEOUT":300
+}
 
 
 def update():
     mongodb.insert_list()
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(update,'interval', minutes=5)
+sched.add_job(update,'interval', minutes=15)
 sched.start()
 
 
 app = Flask(__name__)
+app.config.from_mapping(config)
+cache = Cache(app)
 
 
 
 @app.route("/")
-# @cache.cached(timeout=3600) # 1 hour
+@cache.cached(timeout=3600) # 1 hour
 def home():
     banks = mongodb.export_list()
     today = datetime.date.today()
@@ -31,12 +38,12 @@ def home():
 
 
 
-# def close_running_threads():
-#     for thread in the_threads:
-#         thread.join()
-#     print "Threads complete, ready to finish"
-# #Register the function to be called on exit
-# atexit.register(close_running_threads)
+def close_running_threads():
+    for thread in the_threads:
+        thread.join()
+    print "Threads complete, ready to finish"
+#Register the function to be called on exit
+atexit.register(close_running_threads)
 
 
 if __name__ == '__main__':
