@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import atexit
 import test
 import datetime
 import mongodb
@@ -38,12 +39,7 @@ def home():
 
 
 
-def close_running_threads():
-    for thread in the_threads:
-        thread.join()
-    print "Threads complete, ready to finish"
-#Register the function to be called on exit
-atexit.register(close_running_threads)
+
 
 
 if __name__ == '__main__':
