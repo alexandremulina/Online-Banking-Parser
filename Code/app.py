@@ -3,7 +3,6 @@ import atexit
 import test
 import datetime
 import mongodb
-import time
 from flask_apscheduler import APScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_caching import Cache
