@@ -5,6 +5,7 @@ import datetime
 import mongodb
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_caching import Cache
+import time
 
 #caching
 config = {
@@ -17,8 +18,12 @@ config = {
 def update():
     mongodb.insert_list()
 
+
+def last_time():
+    return time.ctime()
+
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(update,'interval', minutes=60)
+sched.add_job(update,'interval', minutes=10)
 sched.start()
 
 
@@ -29,11 +34,11 @@ cache = Cache(app)
 
 
 @app.route("/")
-@cache.cached(timeout=3900)
+@cache.cached(timeout=180)
 def home():
     banks = mongodb.export_list()
-    today = datetime.date.today()
-    return render_template("index.html", content=banks, date_time=today)
+    today = mongodb.last_update()
+    return render_template("index.html", content=banks, date_time=today )
 
 
 

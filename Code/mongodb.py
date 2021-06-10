@@ -1,7 +1,7 @@
 import pymongo
 from pymongo import MongoClient
 import test
-
+import time
 
 
 
@@ -46,3 +46,7 @@ def insert_list():
                     bank_dict["api_resources"].append(api_dict)
                 collection.insert_one({"name":bank['LegalEntityName'],"status":bank['Status'],"api_resources":bank_dict["api_resources"]})
     return print("DB Atualizado")
+
+def last_update():
+    lasted=list(collection.find().sort("_id", pymongo.DESCENDING).limit(1))
+    return lasted[0]['_id'].generation_time
