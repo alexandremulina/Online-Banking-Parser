@@ -2,4 +2,4 @@
 
 ### URL utilizada: Diretório[https://data.directory.openbankingbrasil.org.br/participants]
 
-![image](https://user-images.githubusercontent.com/49921028/121458384-a1f2b700-c97f-11eb-8fd2-d3e9977fb469.png)
+![image](https://user-images.githubusercontent.com/49921028/121548154-2aef0a00-c9e3-11eb-9e92-f0c048c7fb45.png)
